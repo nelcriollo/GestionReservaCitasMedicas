@@ -1,4 +1,5 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.domain.model;
+package edu.cibertec.gestioncitasmedicas.horario.domain.model;
+
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

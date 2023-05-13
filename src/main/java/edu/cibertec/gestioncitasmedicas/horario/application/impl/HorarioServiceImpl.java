@@ -1,16 +1,15 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.application.impl;
+package edu.cibertec.gestioncitasmedicas.horario.application.impl;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.application.service.HorarioService;
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.HorarioDTO;
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.mapper.HorarioMapper;
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Horario;
-import edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.out.HorarioRepository;
+import edu.cibertec.gestioncitasmedicas.horario.application.service.HorarioService;
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
+import edu.cibertec.gestioncitasmedicas.horario.domain.mapper.HorarioMapper;
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
+import edu.cibertec.gestioncitasmedicas.horario.infraestructure.out.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class HorarioServiceImpl implements HorarioService {
@@ -23,12 +22,14 @@ public class HorarioServiceImpl implements HorarioService {
 
     @Override
     public HorarioDTO find(Long id_horario) {
-        Optional<Horario> horario = horarioRepository.findById(id_horario);
-        if (horario.isPresent()) {
-            return horarioMapper.horarioAHorarioDTO(horario.get());
-        }
-        throw new RuntimeException();
+    Optional<Horario> horario = horarioRepository.findById(id_horario);
+    if (horario.isPresent()){
+        return horarioMapper.horarioAHorarioDTO(horario.get());
     }
+    throw new RuntimeException();
+
+    }
+
 
     @Override
     public List<HorarioDTO> findAll() {

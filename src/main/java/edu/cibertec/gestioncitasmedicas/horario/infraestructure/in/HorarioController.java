@@ -1,7 +1,7 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.in;
+package edu.cibertec.gestioncitasmedicas.horario.infraestructure.in;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.application.service.HorarioService;
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.HorarioDTO;
+import edu.cibertec.gestioncitasmedicas.horario.application.service.HorarioService;
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

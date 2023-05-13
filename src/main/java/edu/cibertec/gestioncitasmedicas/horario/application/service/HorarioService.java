@@ -1,6 +1,6 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.application.service;
+package edu.cibertec.gestioncitasmedicas.horario.application.service;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.HorarioDTO;
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
 
 import java.util.List;
 

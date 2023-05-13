@@ -1,7 +1,8 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.domain.mapper;
+package edu.cibertec.gestioncitasmedicas.horario.domain.mapper;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.HorarioDTO;
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Horario;
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
+
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

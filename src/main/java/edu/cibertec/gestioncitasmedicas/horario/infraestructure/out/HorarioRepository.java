@@ -1,6 +1,6 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.out;
+package edu.cibertec.gestioncitasmedicas.horario.infraestructure.out;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Horario;
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

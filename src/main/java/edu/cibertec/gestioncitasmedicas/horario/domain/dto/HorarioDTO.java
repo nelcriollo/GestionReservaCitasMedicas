@@ -1,4 +1,4 @@
-package edu.cibertec.gestioncitasmedicas.especialidad.domain.dto;
+package edu.cibertec.gestioncitasmedicas.horario.domain.dto;
 
 import lombok.Data;
 
