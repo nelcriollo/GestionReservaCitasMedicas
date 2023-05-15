@@ -28,7 +28,7 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public List<PacienteDTO> listaPaciente() {
+    public List<PacienteDTO> findAll() {
         return pacienteMapper.listaPacienteAPacienteDTO(pacienteRepository.findAll());
     }
 
