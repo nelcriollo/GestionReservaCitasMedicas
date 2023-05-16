@@ -1,5 +1,7 @@
 package edu.cibertec.gestioncitasmedicas.reservacita.domain.model;
 
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,13 +41,13 @@ public class ReservaCita {
     @JoinColumn(name = "Id_Usuario", nullable = false)
     private Usuario usuario;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "Id_Horario", nullable = false)
-    private Horario horario;*/
+    private Horario horario;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id_Paciente", nullable = false)
-    private Paciente paciente;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_paciente", nullable = false)
+    private Paciente paciente;
 
 
     // método para asignar nombre a los estados

@@ -8,8 +8,11 @@ public interface PacienteService {
 
 
     PacienteDTO find(Long id_paciente);
+
     List<PacienteDTO> findAll();
+
     PacienteDTO save(PacienteDTO pacienteDTO);
+
     void delete(Long id_paciente);
 
 

@@ -2,7 +2,6 @@ package edu.cibertec.gestioncitasmedicas.especialidad.domain.dto;
 
 import lombok.Data;
 
-
 import java.math.BigDecimal;
 
 
@@ -13,6 +12,6 @@ public class EspecialidadDTO {
     private String nombre;
     private BigDecimal precioConsulta;
     private int duracion;
-    private boolean estado;
+    private int estado;
 
 }

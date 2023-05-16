@@ -3,8 +3,8 @@ package edu.cibertec.gestioncitasmedicas.paciente.domain.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-
 import java.util.Date;
+
 @Getter
 @Setter
 public class PacienteDTO {
@@ -16,5 +16,5 @@ public class PacienteDTO {
     private String nroDocumento;
     private String email;
     private String telefono;
-    private boolean estado;
+    private int estado;
 }

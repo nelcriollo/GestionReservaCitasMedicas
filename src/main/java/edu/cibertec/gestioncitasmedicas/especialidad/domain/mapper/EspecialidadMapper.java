@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface EspecialidadMapper {
 
-    EspecialidadMapper INSTANCE = Mappers.getMapper( EspecialidadMapper.class);
+    EspecialidadMapper INSTANCE = Mappers.getMapper(EspecialidadMapper.class);
 
     EspecialidadDTO especialidadAEspecialidadDTO(Especialidad especialidad);
 

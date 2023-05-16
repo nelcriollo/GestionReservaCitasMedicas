@@ -5,7 +5,6 @@ import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadDTO;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.mapper.EspecialidadMapper;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.out.EspecialidadRepository;
-import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     public EspecialidadDTO find(Long id_especialidad) {
         Optional<Especialidad> especialidad = especialidadRepository.findById(id_especialidad);
 
-        if (especialidad.isPresent()){
+        if (especialidad.isPresent()) {
             return especialidadMapper.especialidadAEspecialidadDTO(especialidad.get());
         }
         throw new RuntimeException();
@@ -32,7 +31,7 @@ public class EspecialidadServiceImpl implements EspecialidadService {
 
     @Override
     public List<EspecialidadDTO> findAll() {
-     return especialidadMapper.listaEspecialidadAEspecialidadDTO(especialidadRepository.findAll());
+        return especialidadMapper.listaEspecialidadAEspecialidadDTO(especialidadRepository.findAll());
     }
 
 
@@ -42,7 +41,8 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     }
 
     @Override
-    public void delete(Long id_especialidad){ especialidadRepository.deleteById(id_especialidad);
+    public void delete(Long id_especialidad) {
+        especialidadRepository.deleteById(id_especialidad);
 
     }
 }

@@ -18,25 +18,26 @@ public class PacienteController {
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.GET)
     public ResponseEntity<PacienteDTO> obtener(@PathVariable(name = "id_paciente") long id_paciente) {
-        return new ResponseEntity<>(pacienteService.find(id_paciente),HttpStatus.OK );
+        return new ResponseEntity<>(pacienteService.find(id_paciente), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<PacienteDTO>> lista(){
-        return new ResponseEntity<>(pacienteService.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<PacienteDTO>> lista() {
+        return new ResponseEntity<>(pacienteService.findAll(), HttpStatus.OK);
     }
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<PacienteDTO> guardar(@RequestBody PacienteDTO pacienteDTO){
-        return new ResponseEntity<>(pacienteService.save(pacienteDTO),HttpStatus.CREATED);
+    public ResponseEntity<PacienteDTO> guardar(@RequestBody PacienteDTO pacienteDTO) {
+        return new ResponseEntity<>(pacienteService.save(pacienteDTO), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<PacienteDTO> actualizar(@RequestBody PacienteDTO pacienteDTO){
-        return new ResponseEntity<>(pacienteService.save(pacienteDTO),HttpStatus.CREATED);
+    public ResponseEntity<PacienteDTO> actualizar(@RequestBody PacienteDTO pacienteDTO) {
+        return new ResponseEntity<>(pacienteService.save(pacienteDTO), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.DELETE)
-    public void eliminar(@PathVariable(name = "id_paciente") long id_paciente){
+    public void eliminar(@PathVariable(name = "id_paciente") long id_paciente) {
         pacienteService.delete(id_paciente);
     }
 

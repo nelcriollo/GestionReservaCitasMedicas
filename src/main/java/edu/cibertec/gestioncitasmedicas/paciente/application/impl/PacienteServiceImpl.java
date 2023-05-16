@@ -18,6 +18,7 @@ public class PacienteServiceImpl implements PacienteService {
     private PacienteRepository pacienteRepository;
 
     private PacienteMapper pacienteMapper = PacienteMapper.INSTANCE;
+
     @Override
     public PacienteDTO find(Long id_paciente) {
         Optional<Paciente> paciente = pacienteRepository.findById(id_paciente);
@@ -38,7 +39,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public void delete(Long id_paciente) { pacienteRepository.deleteById(id_paciente);
+    public void delete(Long id_paciente) {
+        pacienteRepository.deleteById(id_paciente);
 
-  }
+    }
 }
