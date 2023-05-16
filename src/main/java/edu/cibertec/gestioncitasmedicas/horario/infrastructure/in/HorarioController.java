@@ -1,4 +1,4 @@
-package edu.cibertec.gestioncitasmedicas.horario.infraestructure.in;
+package edu.cibertec.gestioncitasmedicas.horario.infrastructure.in;
 
 import edu.cibertec.gestioncitasmedicas.horario.application.service.HorarioService;
 import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
@@ -16,6 +16,7 @@ public class HorarioController {
 
     @Autowired
     private HorarioService horarioService;
+
     @RequestMapping(value = "/{id_horario}", method = RequestMethod.GET)
     public ResponseEntity<HorarioDTO> obtener(@PathVariable(name = "id_horario") long id_horario) {
         return new ResponseEntity<>(horarioService.find(id_horario), HttpStatus.OK);

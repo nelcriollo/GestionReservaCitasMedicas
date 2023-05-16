@@ -4,7 +4,7 @@ import edu.cibertec.gestioncitasmedicas.horario.application.service.HorarioServi
 import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
 import edu.cibertec.gestioncitasmedicas.horario.domain.mapper.HorarioMapper;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
-import edu.cibertec.gestioncitasmedicas.horario.infraestructure.out.HorarioRepository;
+import edu.cibertec.gestioncitasmedicas.horario.infrastructure.out.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +22,11 @@ public class HorarioServiceImpl implements HorarioService {
 
     @Override
     public HorarioDTO find(Long id_horario) {
-    Optional<Horario> horario = horarioRepository.findById(id_horario);
-    if (horario.isPresent()){
-        return horarioMapper.horarioAHorarioDTO(horario.get());
-    }
-    throw new RuntimeException();
+        Optional<Horario> horario = horarioRepository.findById(id_horario);
+        if (horario.isPresent()) {
+            return horarioMapper.horarioAHorarioDTO(horario.get());
+        }
+        throw new RuntimeException();
 
     }
 

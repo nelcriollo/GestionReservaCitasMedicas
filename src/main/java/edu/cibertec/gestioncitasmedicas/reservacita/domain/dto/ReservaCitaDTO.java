@@ -1,5 +1,6 @@
 package edu.cibertec.gestioncitasmedicas.reservacita.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
@@ -28,9 +30,9 @@ public class ReservaCitaDTO {
 
     private String nomusuario;
 
-    @Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern = "HH:mm:ss")
-    private Date horainicio;
+
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime horainicio;
 
     private String nompaciente;
 }
