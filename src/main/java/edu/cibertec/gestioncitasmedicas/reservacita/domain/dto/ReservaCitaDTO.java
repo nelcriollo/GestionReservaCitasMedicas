@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.math.BigDecimal;
-import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
@@ -32,7 +31,7 @@ public class ReservaCitaDTO {
 
 
     @JsonFormat(pattern = "HH:mm:ss")
-    private LocalTime horainicio;
+    private String horainicio;
 
     private String nompaciente;
 }
