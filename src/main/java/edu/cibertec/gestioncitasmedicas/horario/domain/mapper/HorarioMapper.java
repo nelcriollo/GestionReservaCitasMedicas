@@ -1,7 +1,9 @@
 package edu.cibertec.gestioncitasmedicas.horario.domain.mapper;
 
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioCreateDTO;
 import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
 
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioUpdateDTO;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -15,7 +17,11 @@ public interface HorarioMapper {
 
     HorarioDTO horarioAHorarioDTO(Horario horario);
 
-    Horario horarioDTOAHorario(HorarioDTO horarioDTO);
+    Horario horarioCreateDTOHorario(HorarioCreateDTO horarioCreateDTO);
+
+    HorarioCreateDTO horarioAHorarioRegitrarDTO(Horario horario);
+
+    Horario horarioUpdateDTOAHorario(HorarioUpdateDTO horarioUpdateDTO);
 
     List<HorarioDTO> listaHorarioAHorarioDTO(List<Horario> horario);
 
