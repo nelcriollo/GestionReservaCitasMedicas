@@ -1,17 +1,21 @@
 package edu.cibertec.gestioncitasmedicas.especialidad.application.service;
 
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadCreateDTO;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadDTO;
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadUpdateDTO;
 
 import java.util.List;
 
 public interface EspecialidadService {
 
-    EspecialidadDTO find(Long id_especialidad);
 
     List<EspecialidadDTO> findAll();
+    EspecialidadDTO findById(long id_especialidad);
 
-    EspecialidadDTO save(EspecialidadDTO especialidadDTO);
+    EspecialidadCreateDTO save(EspecialidadCreateDTO especialidadCreateDTO);
 
-    void delete(Long id_especialidad);
+    EspecialidadDTO update(EspecialidadUpdateDTO especialidadUpdateDTO);
+
+    void delete(long id_especialidad);
 
 }

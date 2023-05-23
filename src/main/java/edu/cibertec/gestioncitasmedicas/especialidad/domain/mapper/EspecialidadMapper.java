@@ -1,6 +1,8 @@
 package edu.cibertec.gestioncitasmedicas.especialidad.domain.mapper;
 
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadCreateDTO;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadDTO;
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadUpdateDTO;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,7 +16,11 @@ public interface EspecialidadMapper {
 
     EspecialidadDTO especialidadAEspecialidadDTO(Especialidad especialidad);
 
-    Especialidad especialidadDTOAEspecialidad(EspecialidadDTO especialidadDTO);
+    Especialidad especialidadCreateDTOEspecialidad(EspecialidadCreateDTO especialidadCreateDTO);
+
+    EspecialidadCreateDTO especialidadAEspecialidadRegistrarDTO(Especialidad especialidad);
+
+    Especialidad especialidadUpdateDTOAEspecialidad(EspecialidadUpdateDTO especialidadUpdateDTO);
 
     List<EspecialidadDTO> listaEspecialidadAEspecialidadDTO(List<Especialidad> especialidad);
 
