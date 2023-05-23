@@ -11,9 +11,9 @@ public class HorarioCreateDTO {
 
     private Date fecha;
 
-    private Date horaInicio;
+    private String horaInicio;
 
-    private Date horaFin;
+    private String horaFin;
 
-    private boolean estado;
+    private int estado;
 }
