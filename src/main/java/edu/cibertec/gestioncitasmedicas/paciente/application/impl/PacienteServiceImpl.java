@@ -1,7 +1,9 @@
 package edu.cibertec.gestioncitasmedicas.paciente.application.impl;
 
 import edu.cibertec.gestioncitasmedicas.paciente.application.service.PacienteService;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteCreateDTO;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteDTO;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteUpdateDTO;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.mapper.PacienteMapper;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
 import edu.cibertec.gestioncitasmedicas.paciente.infrastructure.out.PacienteRepository;
@@ -34,9 +36,23 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDTO save(PacienteDTO pacienteDTO) {
-        return pacienteMapper.pacienteAPacienteDTO(pacienteRepository.save(pacienteMapper.pacienteDTOAPaciente(pacienteDTO)));
+    public PacienteDTO findByID(long id) {
+        return null;
     }
+
+    @Override
+    public PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO) {
+        Paciente paciente = PacienteMapper.INSTANCE.pacienteCreateDTOAPaciente(pacienteCreateDTO);
+        return PacienteMapper.INSTANCE.pacienteAPacienteRegistradoDTO(pacienteRepository.save(paciente));
+    }
+
+    @Override
+    public PacienteDTO update(PacienteUpdateDTO pacienteUpdateDTO) {
+        Paciente paciente = PacienteMapper.INSTANCE.pacienteUpdateDTOAPaciente(pacienteUpdateDTO);
+        return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteRepository.save(paciente));
+    }
+
+
 
     @Override
     public void delete(Long id_paciente) {

@@ -1,6 +1,8 @@
 package edu.cibertec.gestioncitasmedicas.paciente.application.service;
 
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteCreateDTO;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteDTO;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteUpdateDTO;
 
 import java.util.List;
 
@@ -11,7 +13,11 @@ public interface PacienteService {
 
     List<PacienteDTO> findAll();
 
-    PacienteDTO save(PacienteDTO pacienteDTO);
+    PacienteDTO findByID (long id);
+
+    PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO);
+
+    PacienteDTO update(PacienteUpdateDTO pacienteUpdateDTO);
 
     void delete(Long id_paciente);
 
