@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,13 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.GET)
-    public ResponseEntity<PacienteDTO> obtener(@PathVariable(name = "id_paciente") long id_paciente) {
-        return new ResponseEntity<>(pacienteService.find(id_paciente), HttpStatus.OK);
+    public ResponseEntity<?> obtener(@PathVariable(name = "id_paciente") long id_paciente) {
+        try{
+            return new ResponseEntity<>(pacienteService.findByID(id_paciente), HttpStatus.OK);
+        }catch (NoResultException e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -39,8 +45,15 @@ public class PacienteController {
     }
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.DELETE)
-    public void eliminar(@PathVariable(name = "id_paciente") long id_paciente) {
-        pacienteService.delete(id_paciente);
+    public ResponseEntity<?> eliminar(@PathVariable(name = "id_paciente") long id_paciente) {
+        try{
+            pacienteService.delete(id_paciente);
+            return new ResponseEntity<>("Se Elimino al paciente con id: " + id_paciente,HttpStatus.OK);
+        }catch (NoResultException e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+
+
     }
 
 

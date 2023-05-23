@@ -19,7 +19,7 @@ public interface PacienteService {
 
     PacienteDTO update(PacienteUpdateDTO pacienteUpdateDTO);
 
-    void delete(Long id_paciente);
+    void delete(long id_paciente);
 
 
 }
