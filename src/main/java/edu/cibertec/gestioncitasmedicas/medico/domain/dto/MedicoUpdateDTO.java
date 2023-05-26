@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class MedicoUpdateDTO {
 
-    private long id_medico;
+    private long idMedico;
 
-    private String codigo_cpi;
+    private String codigoCpi;
 
     private String nombre;
 

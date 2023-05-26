@@ -21,10 +21,10 @@ public class PacienteController {
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.GET)
     public ResponseEntity<?> obtener(@PathVariable(name = "id_paciente") long id_paciente) {
-        try{
+        try {
             return new ResponseEntity<>(pacienteService.findByID(id_paciente), HttpStatus.OK);
-        }catch (NoResultException e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        } catch (NoResultException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
 
     }
@@ -46,11 +46,11 @@ public class PacienteController {
 
     @RequestMapping(value = "/{id_paciente}", method = RequestMethod.DELETE)
     public ResponseEntity<?> eliminar(@PathVariable(name = "id_paciente") long id_paciente) {
-        try{
+        try {
             pacienteService.delete(id_paciente);
-            return new ResponseEntity<>("Se Elimino al paciente con id: " + id_paciente,HttpStatus.OK);
-        }catch (NoResultException e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Se Elimino al paciente con id: " + id_paciente, HttpStatus.OK);
+        } catch (NoResultException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
 
 

@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class PacienteUpdateDTO {
-    private Long id_paciente;
+    private Long idPaciente;
     private String nombre;
     private String apellidos;
     private Date fechaNacimiento;

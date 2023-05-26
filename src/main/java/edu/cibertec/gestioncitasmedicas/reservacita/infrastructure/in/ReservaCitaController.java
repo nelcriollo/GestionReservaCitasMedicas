@@ -13,14 +13,14 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reservaCita")
+@RequestMapping("/api/reservaCitas")
 public class ReservaCitaController {
 
     @Autowired
     private ReservaCitaService reservaCitaService;
 
     @GetMapping("/")
-    public ResponseEntity<List<ReservaCitaDTO>> listarReservaCitas() {
+    public ResponseEntity<List<ReservaCitaDTO>> listarReservaCitasAll() {
         return new ResponseEntity<>(reservaCitaService.findAll(), HttpStatus.OK);
     }
 
@@ -44,10 +44,10 @@ public class ReservaCitaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarReservaCita(@PathVariable(value = "id") long id) {
+    public ResponseEntity<?> eliminarReserva(@PathVariable(value = "id") long id) {
         try {
             reservaCitaService.delete(id);
-            return new ResponseEntity<>("Se elimino la cita reservada con id:" + id, HttpStatus.OK);
+            return new ResponseEntity<>("Se elimino cita reservada con id:" + id, HttpStatus.OK);
         } catch (NoResultException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

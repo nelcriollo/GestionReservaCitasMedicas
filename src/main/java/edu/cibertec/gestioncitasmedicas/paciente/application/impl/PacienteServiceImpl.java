@@ -23,15 +23,6 @@ public class PacienteServiceImpl implements PacienteService {
     private PacienteMapper pacienteMapper = PacienteMapper.INSTANCE;
 
     @Override
-    public PacienteDTO find(Long id_paciente) {
-        Optional<Paciente> paciente = pacienteRepository.findById(id_paciente);
-        if (paciente.isPresent()) {
-            return pacienteMapper.pacienteAPacienteDTO(paciente.get());
-        }
-        throw new RuntimeException();
-    }
-
-    @Override
     public List<PacienteDTO> findAll() {
         return pacienteMapper.listaPacienteAPacienteDTO(pacienteRepository.findAll());
     }
@@ -40,7 +31,7 @@ public class PacienteServiceImpl implements PacienteService {
     public PacienteDTO findByID(long id) {
         Optional<Paciente> pacienteOptional = pacienteRepository.findById(id);
 
-        if (!pacienteOptional.isPresent()){
+        if (!pacienteOptional.isPresent()) {
             throw new NoResultException("No se encontró paciente con id" + id);
         }
         return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteOptional.get());
@@ -59,12 +50,11 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
 
-
     @Override
     public void delete(long id_paciente) {
         Optional<Paciente> paciente = pacienteRepository.findById(id_paciente);
 
-        if (!paciente.isPresent()){
+        if (!paciente.isPresent()) {
             throw new NoResultException("No se encontro paciente con id: " + id_paciente);
         }
         pacienteRepository.delete(paciente.get());

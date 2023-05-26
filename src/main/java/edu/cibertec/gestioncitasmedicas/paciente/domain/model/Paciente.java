@@ -1,7 +1,9 @@
 package edu.cibertec.gestioncitasmedicas.paciente.domain.model;
 
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.model.ReservaCita;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,8 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,8 +19,8 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_paciente")
-    private Long id_paciente;
+    @Column(name = "id_Paciente")
+    private Long idPaciente;
 
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;

@@ -3,7 +3,9 @@ package edu.cibertec.gestioncitasmedicas.reservacita.domain.model;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,23 +15,21 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "tb_reservacita")
 public class ReservaCita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Reserva", nullable = false)
-    private long Id_Reserva;
+    @Column(name = "id_reserva", nullable = false)
+    private long idReserva;
 
     @Column(name = "Fecha_Registro", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date Fecha_Registro;
+    private Date fechaRegistro;
 
-    @Column(name = "Cantidad", nullable = false)
-    private int Cantidad;
+    @Column(name = "cantidad", nullable = false)
+    private int cantidad;
 
     @Column(name = "Precio", scale = 2, nullable = false)
     private BigDecimal Precio;
@@ -38,15 +38,15 @@ public class ReservaCita {
     private int estado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id_Usuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "Id_Horario", nullable = false)
+    @JoinColumn(name = "id_horario", nullable = false)
     private Horario horario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_paciente", nullable = false)
+    @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
 
 

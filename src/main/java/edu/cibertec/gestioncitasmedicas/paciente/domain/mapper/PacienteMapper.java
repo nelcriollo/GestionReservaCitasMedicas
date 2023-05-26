@@ -25,6 +25,4 @@ public interface PacienteMapper {
     Paciente pacienteUpdateDTOAPaciente(PacienteUpdateDTO pacienteUpdateDTO);
 
     List<PacienteDTO> listaPacienteAPacienteDTO(List<Paciente> paciente);
-
-    List<Paciente> listaPacienteDTOAPaciente(List<PacienteDTO> pacienteDTOLista);
 }

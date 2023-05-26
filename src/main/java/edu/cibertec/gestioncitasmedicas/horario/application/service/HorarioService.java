@@ -1,15 +1,20 @@
 package edu.cibertec.gestioncitasmedicas.horario.application.service;
 
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioCreateDTO;
+import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioUpdateDTO;
 import edu.cibertec.gestioncitasmedicas.horario.domain.dto.HorarioDTO;
 
 import java.util.List;
 
 public interface HorarioService {
-    HorarioDTO find(Long id_horario);
+
+    HorarioDTO findById(long id_horario);
 
     List<HorarioDTO> findAll();
 
-    HorarioDTO save(HorarioDTO horarioDTO);
+    HorarioCreateDTO save(HorarioCreateDTO horarioCreateDTO);
+
+    HorarioDTO update(HorarioUpdateDTO horarioUpdateDTO);
 
     void delete(Long id_horario);
 }

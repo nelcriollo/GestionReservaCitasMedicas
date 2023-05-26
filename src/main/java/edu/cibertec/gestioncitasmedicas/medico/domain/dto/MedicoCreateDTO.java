@@ -1,6 +1,5 @@
 package edu.cibertec.gestioncitasmedicas.medico.domain.dto;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class MedicoCreateDTO {
 
-    private String codigo_cpi;
+    private String codigoCpi;
 
     private String nombre;
 

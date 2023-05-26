@@ -1,19 +1,18 @@
 package edu.cibertec.gestioncitasmedicas.especialidad.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import edu.cibertec.gestioncitasmedicas.medico.domain.model.Medico;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,7 +22,7 @@ public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_especialidad")
-    private Long id_especialidad;
+    private Long idEspecialidad;
 
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
@@ -37,10 +36,12 @@ public class Especialidad {
     @Column(name = "estado")
     private int estado;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Horario> horario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Medico>  EspecialidadMedicos;
+    private List<Medico> especialidadMedicos;
 
 }
