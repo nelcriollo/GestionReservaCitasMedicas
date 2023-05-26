@@ -1,13 +1,16 @@
 package edu.cibertec.gestioncitasmedicas.paciente.application.impl;
 
 import edu.cibertec.gestioncitasmedicas.paciente.application.service.PacienteService;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteCreateDTO;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteDTO;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.dto.PacienteUpdateDTO;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.mapper.PacienteMapper;
 import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
 import edu.cibertec.gestioncitasmedicas.paciente.infrastructure.out.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,13 +37,36 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDTO save(PacienteDTO pacienteDTO) {
-        return pacienteMapper.pacienteAPacienteDTO(pacienteRepository.save(pacienteMapper.pacienteDTOAPaciente(pacienteDTO)));
+    public PacienteDTO findByID(long id) {
+        Optional<Paciente> pacienteOptional = pacienteRepository.findById(id);
+
+        if (!pacienteOptional.isPresent()){
+            throw new NoResultException("No se encontró paciente con id" + id);
+        }
+        return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteOptional.get());
     }
 
     @Override
-    public void delete(Long id_paciente) {
-        pacienteRepository.deleteById(id_paciente);
+    public PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO) {
+        Paciente paciente = PacienteMapper.INSTANCE.pacienteCreateDTOAPaciente(pacienteCreateDTO);
+        return PacienteMapper.INSTANCE.pacienteAPacienteRegistradoDTO(pacienteRepository.save(paciente));
+    }
 
+    @Override
+    public PacienteDTO update(PacienteUpdateDTO pacienteUpdateDTO) {
+        Paciente paciente = PacienteMapper.INSTANCE.pacienteUpdateDTOAPaciente(pacienteUpdateDTO);
+        return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteRepository.save(paciente));
+    }
+
+
+
+    @Override
+    public void delete(long id_paciente) {
+        Optional<Paciente> paciente = pacienteRepository.findById(id_paciente);
+
+        if (!paciente.isPresent()){
+            throw new NoResultException("No se encontro paciente con id: " + id_paciente);
+        }
+        pacienteRepository.delete(paciente.get());
     }
 }
