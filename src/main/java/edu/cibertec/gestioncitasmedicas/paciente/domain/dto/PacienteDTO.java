@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 public class PacienteDTO {
 
-    private Long id_paciente;
+    private Long idPaciente;
     private String nombre;
     private String apellidos;
     private Date fechaNacimiento;

@@ -10,6 +10,7 @@ public interface EspecialidadService {
 
 
     List<EspecialidadDTO> findAll();
+
     EspecialidadDTO findById(long id_especialidad);
 
     EspecialidadCreateDTO save(EspecialidadCreateDTO especialidadCreateDTO);

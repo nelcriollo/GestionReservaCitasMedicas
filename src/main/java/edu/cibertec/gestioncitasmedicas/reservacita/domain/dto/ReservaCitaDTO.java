@@ -14,24 +14,23 @@ import java.util.Date;
 @Setter
 public class ReservaCitaDTO {
 
-    private long Id_Reserva;
+    private long idReserva;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date Fecha_Registro;
+    private Date fechaRegistro;
 
-    private int Cantidad;
+    private int cantidad;
 
-    private BigDecimal Precio;
+    private BigDecimal precio;
 
 
     private int estado;
 
-    private String nomusuario;
-
+    private String nomUsuario;
 
     @JsonFormat(pattern = "HH:mm:ss")
-    private String horainicio;
+    private String horaInicio;
 
-    private String nompaciente;
+    private String nomPaciente;
 }

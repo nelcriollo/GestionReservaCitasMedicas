@@ -18,8 +18,6 @@ public interface UsuarioMapper {
 
     UsuarioDTO usarioAUsuarioDTO(Usuario usuario);
 
-    Usuario usarioDTOAUsuario(UsuarioDTO usuarioDTO);
-
     Usuario usuarioCreateDTOAUsuario(UsuarioCreateDTO usuarioCreateDTO);
 
     Usuario usuarioUpdateDTOAUsuario(UsuarioUpdateDTO usuarioUpdateDTO);

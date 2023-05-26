@@ -8,12 +8,9 @@ import java.util.List;
 
 public interface PacienteService {
 
-
-    PacienteDTO find(Long id_paciente);
-
     List<PacienteDTO> findAll();
 
-    PacienteDTO findByID (long id);
+    PacienteDTO findByID(long id_paciente);
 
     PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO);
 

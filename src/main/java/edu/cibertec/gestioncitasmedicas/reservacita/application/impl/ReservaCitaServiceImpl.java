@@ -7,7 +7,6 @@ import edu.cibertec.gestioncitasmedicas.reservacita.domain.dto.ReservaCitaUpdate
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.mapper.ReservaCitaMapper;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.model.ReservaCita;
 import edu.cibertec.gestioncitasmedicas.reservacita.infrastructure.out.ReservaCitaRepository;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,16 +49,10 @@ public class ReservaCitaServiceImpl implements ReservaCitaService {
 
     @Override
     public void delete(long id) {
-        Optional<ReservaCita> reservaCita = reservaCitaRepository.findById(id);
+        Optional<ReservaCita> reservaCitaOptional = reservaCitaRepository.findById(id);
 
-        if (!reservaCita.isPresent()) {
-            throw new NoResultException("No se encontro la cita reservada con id: " + id);
-        }
-        reservaCitaRepository.delete(reservaCita.get());
-    }
+        reservaCitaOptional.ifPresent(reservaCita -> reservaCitaRepository.delete(reservaCita));
+        throw new NoResultException("No se encontro la cita reservada con id: " + id);
 
-    @Override
-    public List<ReservaCita> obtenerReservasDeUsuario(Usuario usuario) {
-        return reservaCitaRepository.findByUsuario(usuario);
     }
 }

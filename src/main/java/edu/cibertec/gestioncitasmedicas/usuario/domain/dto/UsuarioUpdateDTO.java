@@ -7,15 +7,15 @@ import lombok.Setter;
 @Setter
 public class UsuarioUpdateDTO {
 
-    private long Id_Usuario;
+    private long idUsuario;
 
-    private String Nombre;
+    private String nombre;
 
-    private String Apellidos;
+    private String apellidos;
 
-    private String Email;
+    private String email;
 
-    private String Password;
+    private String password;
 
-    private int Estado;
+    private int estado;
 }

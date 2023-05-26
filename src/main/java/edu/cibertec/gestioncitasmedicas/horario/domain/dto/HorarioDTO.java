@@ -1,7 +1,6 @@
 package edu.cibertec.gestioncitasmedicas.horario.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,16 +10,15 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 
-@Data
 @Getter
 @Setter
 public class HorarioDTO {
 
-    private long id_horario;
+    private long idHorario;
 
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fecha;
+    private Date fechaRegistro;
 
     @JsonFormat(pattern = "HH:mm:ss")
     private String horaInicio;
@@ -29,9 +27,9 @@ public class HorarioDTO {
     @JsonFormat(pattern = "HH:mm:ss")
     private String horaFin;
 
-    private int id_medico;
+    private String nomMedico;
 
-    private int id_especialidad;
+    private String nomEspecialidad;
 
     private int estado;
 }

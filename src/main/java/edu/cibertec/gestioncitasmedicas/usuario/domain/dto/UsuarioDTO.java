@@ -1,28 +1,24 @@
 package edu.cibertec.gestioncitasmedicas.usuario.domain.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class UsuarioDTO {
 
-    private long Id_Usuario;
+    private long idUsuario;
 
-    private String Nombre;
+    private String nombre;
 
-    private String Apellidos;
+    private String apellidos;
 
-    private String Email;
+    private String email;
 
-    private String Password;
+    private String password;
 
-    private int Estado;
+    private int estado;
 
 
 }

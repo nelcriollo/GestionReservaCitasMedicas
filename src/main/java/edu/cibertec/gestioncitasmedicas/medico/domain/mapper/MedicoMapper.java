@@ -18,15 +18,14 @@ public interface MedicoMapper {
     @Mapping(target = "nomEspecialidad", source = "especialidad.nombre")
     MedicoDTO medicoAMedicoDTO(Medico medico);
 
-    Medico medicoDTOAMedico(MedicoDTO medicoDTO);
 
-    @Mapping(target = "especialidad.id_especialidad", source = "medicoCreateDTO.especialidadId")
+    @Mapping(target = "especialidad.idEspecialidad", source = "medicoCreateDTO.especialidadId")
     Medico medicoCreateDTOAMedico(MedicoCreateDTO medicoCreateDTO);
 
-    @Mapping(target = "especialidadId", source = "especialidad.id_especialidad")
+    @Mapping(target = "especialidadId", source = "especialidad.idEspecialidad")
     MedicoCreateDTO medicoAMedicoRegistradoDTO(Medico medico);
 
-    @Mapping(target = "especialidad.id_especialidad", source = "medicoUpdateDTO.especialidadId")
+    @Mapping(target = "especialidad.idEspecialidad", source = "medicoUpdateDTO.especialidadId")
     Medico medicoUpdateDTOAMedico(MedicoUpdateDTO medicoUpdateDTO);
 
     @Mapping(target = "nomEspecialidad", source = "especialidad.nombre")

@@ -7,7 +7,6 @@ import edu.cibertec.gestioncitasmedicas.especialidad.domain.dto.EspecialidadUpda
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.mapper.EspecialidadMapper;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.out.EspecialidadRepository;
-import edu.cibertec.gestioncitasmedicas.medico.domain.model.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,6 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     private EspecialidadRepository especialidadRepository;
 
     private EspecialidadMapper especialidadMapper = EspecialidadMapper.INSTANCE;
-
 
 
     @Override
@@ -55,13 +53,14 @@ public class EspecialidadServiceImpl implements EspecialidadService {
         Especialidad especialidad = EspecialidadMapper.INSTANCE.especialidadUpdateDTOAEspecialidad(especialidadUpdateDTO);
         return EspecialidadMapper.INSTANCE.especialidadAEspecialidadDTO(especialidadRepository.save(especialidad));
     }
+
     @Override
     public void delete(long id_especialidad) {
 
         Optional<Especialidad> especialidad = especialidadRepository.findById(id_especialidad);
 
 
-        if (!especialidad.isPresent()){
+        if (!especialidad.isPresent()) {
             throw new NoResultException("No se encontro el especialista con el id: " + id_especialidad);
 
         } else {

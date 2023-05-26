@@ -2,15 +2,16 @@ package edu.cibertec.gestioncitasmedicas.medico.domain.model;
 
 
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,10 +20,10 @@ public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_medico")
-    private long id_medico;
+    private long idMedico;
 
     @Column(name = "codigo_CPI", length = 15, nullable = false)
-    private String codigo_cpi;
+    private String codigoCpi;
 
     @Column(name = "nombre", length = 40, nullable = false)
     private String nombre;
@@ -30,7 +31,7 @@ public class Medico {
     @Column(name = "apellidos", length = 70, nullable = false)
     private String apellidos;
 
-    @Column(name = "email", length = 255, nullable = false)
+    @Column(name = "email", length = 250, nullable = false)
     private String email;
 
     @Column(name = "telefono", length = 15, nullable = false)
@@ -42,5 +43,8 @@ public class Medico {
 
     @Column(name = "estado", nullable = false)
     private int estado;
+
+    @OneToMany(mappedBy = "medico")
+    private Set<Horario> horarios = new HashSet();
 
 }
