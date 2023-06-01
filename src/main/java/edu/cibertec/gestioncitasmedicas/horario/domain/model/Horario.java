@@ -2,6 +2,7 @@ package edu.cibertec.gestioncitasmedicas.horario.domain.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import edu.cibertec.gestioncitasmedicas.medico.domain.model.Medico;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.model.ReservaCita;
@@ -42,15 +43,18 @@ public class Horario {
     @Column(name = "estado")
     private int estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_medico", nullable = false)
+    @JsonIgnore
     private Medico medico;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_especialidad", nullable = false)
+    @JsonIgnore
     private Especialidad especialidad;
 
 
+    @JsonIgnore
     @OneToOne(mappedBy = "horario")
     private ReservaCita reservaCita;
 }

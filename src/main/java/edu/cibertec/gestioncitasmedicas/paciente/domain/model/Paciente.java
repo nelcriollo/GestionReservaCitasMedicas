@@ -1,5 +1,6 @@
 package edu.cibertec.gestioncitasmedicas.paciente.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.model.ReservaCita;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,5 +47,6 @@ public class Paciente {
     private int estado;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ReservaCita> citasReservadas;
 }

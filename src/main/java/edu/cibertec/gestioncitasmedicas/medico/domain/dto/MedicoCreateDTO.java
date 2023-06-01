@@ -1,5 +1,6 @@
 package edu.cibertec.gestioncitasmedicas.medico.domain.dto;
 
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,7 @@ public class MedicoCreateDTO {
 
     private String telefono;
 
-    private int especialidadId;
+    private Especialidad especialidad;
 
     private int estado;
 }

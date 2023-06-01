@@ -36,12 +36,14 @@ public class Especialidad {
     @Column(name = "estado")
     private int estado;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Horario> horario;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Medico> especialidadMedicos;
 
 }
