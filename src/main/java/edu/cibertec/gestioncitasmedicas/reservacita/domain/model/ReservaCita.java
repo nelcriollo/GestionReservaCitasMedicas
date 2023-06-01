@@ -37,7 +37,7 @@ public class ReservaCita {
     @Column(name = "estado", nullable = false)
     private int estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
@@ -45,7 +45,7 @@ public class ReservaCita {
     @JoinColumn(name = "id_horario", nullable = false)
     private Horario horario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
 

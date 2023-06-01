@@ -1,5 +1,8 @@
 package edu.cibertec.gestioncitasmedicas.reservacita.domain.dto;
 
+import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
+import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
+import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,20 +20,15 @@ public class ReservaCitaCreateDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaRegistro;
 
-
     private int cantidad;
-
 
     private BigDecimal precio;
 
-
     private int estado;
 
-    private long usuarioId;
+    private Usuario usuario;
 
+    private Horario horario;
 
-    private long horarioId;
-
-
-    private long pacienteId;
+    private Paciente paciente;
 }

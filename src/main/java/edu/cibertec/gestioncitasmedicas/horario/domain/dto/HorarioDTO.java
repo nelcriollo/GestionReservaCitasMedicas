@@ -1,6 +1,8 @@
 package edu.cibertec.gestioncitasmedicas.horario.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
+import edu.cibertec.gestioncitasmedicas.medico.domain.model.Medico;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,9 +29,9 @@ public class HorarioDTO {
     @JsonFormat(pattern = "HH:mm:ss")
     private String horaFin;
 
-    private String nomMedico;
+    private Medico medico;
 
-    private String nomEspecialidad;
+    private Especialidad especialidad;
 
     private int estado;
 }

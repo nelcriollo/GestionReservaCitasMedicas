@@ -1,6 +1,7 @@
 package edu.cibertec.gestioncitasmedicas.medico.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import lombok.AllArgsConstructor;
@@ -37,14 +38,17 @@ public class Medico {
     @Column(name = "telefono", length = 15, nullable = false)
     private String telefono;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_especialidad", nullable = false)
+    @JsonIgnore
     private Especialidad especialidad;
 
     @Column(name = "estado", nullable = false)
     private int estado;
 
+
     @OneToMany(mappedBy = "medico")
-    private Set<Horario> horarios = new HashSet();
+    @JsonIgnore
+    private Set<Horario> horarios;
 
 }
