@@ -3,10 +3,7 @@ package edu.cibertec.gestioncitasmedicas.usuario.application.impl;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.mapper.ReservaCitaMapper;
 import edu.cibertec.gestioncitasmedicas.reservacita.infrastructure.out.ReservaCitaRepository;
 import edu.cibertec.gestioncitasmedicas.usuario.application.service.UsuarioService;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioCreateDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioReservasDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioUpdateDTO;
+import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.*;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.mapper.UsuarioMapper;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
 import edu.cibertec.gestioncitasmedicas.usuario.infrastructure.out.UsuarioRepository;
@@ -67,6 +64,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioDTO update(UsuarioUpdateDTO usuarioUpdateDTO) {
         Usuario usuario = UsuarioMapper.instancia.usuarioUpdateDTOAUsuario(usuarioUpdateDTO);
         return UsuarioMapper.instancia.usarioAUsuarioDTO(usuarioRepository.save(usuario));
+    }
+
+    @Override
+    public Usuario login(String email, String password) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmailAndPassword(email, password);
+
+        if (usuarioOptional.isPresent()) {
+            return  usuarioOptional.get();
+        } else {
+            throw new NoResultException("No se encontro el usuario con username: " + email + " y password: " + password);
+        }
+
     }
 
 

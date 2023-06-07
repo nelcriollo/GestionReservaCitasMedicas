@@ -1,9 +1,7 @@
 package edu.cibertec.gestioncitasmedicas.usuario.application.service;
 
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioCreateDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioReservasDTO;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioUpdateDTO;
+import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.*;
+import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
 
 import java.util.List;
 
@@ -19,5 +17,6 @@ public interface UsuarioService {
 
     UsuarioDTO update(UsuarioUpdateDTO usuarioUpdateDTO);
 
+    Usuario login(String email, String password);
     void delete(long id);
 }

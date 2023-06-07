@@ -1,18 +1,22 @@
 package edu.cibertec.gestioncitasmedicas.usuario.infrastructure.in;
 
-import edu.cibertec.gestioncitasmedicas.reservacita.application.service.ReservaCitaService;
+import edu.cibertec.gestioncitasmedicas.springsecurity.application.UserDetailsImpl;
 import edu.cibertec.gestioncitasmedicas.usuario.application.service.UsuarioService;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioCreateDTO;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioDTO;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioReservasDTO;
 import edu.cibertec.gestioncitasmedicas.usuario.domain.dto.UsuarioUpdateDTO;
+import edu.cibertec.gestioncitasmedicas.springsecurity.model.AuthenCredentials;
+import edu.cibertec.gestioncitasmedicas.springsecurity.configsecurity.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -22,7 +26,23 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @Autowired
-    private ReservaCitaService reservaCitaService;
+    private UserDetailsService userDetailsService;
+
+
+    @PostMapping("/login")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> login(@RequestBody AuthenCredentials authCredentials) {
+
+        if (authCredentials.getEmail() != null && authCredentials.getPassword() != null) {
+            UserDetailsImpl userDetailsImpl = (UserDetailsImpl) userDetailsService.loadUserByUsername(authCredentials.getEmail());
+            String token = TokenUtil.generateToken(userDetailsImpl.getNombre(), userDetailsImpl.getUsername());
+            userDetailsImpl.setToken(token);
+            return ResponseEntity.ok()
+                    .header("Authorization", "Bearer " + token)
+                    .body(userDetailsImpl);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Credenciales inválidas");
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
@@ -61,6 +81,7 @@ public class UsuarioController {
         } catch (NoResultException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
+
 
     }
 }
