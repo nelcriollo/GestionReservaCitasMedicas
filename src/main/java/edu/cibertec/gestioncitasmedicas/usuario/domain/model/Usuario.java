@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario", nullable = false)
@@ -29,7 +29,7 @@ public class Usuario {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @Column(name = "password", length = 250, nullable = false)
+    @Column(name = "password", length = 256, nullable = false)
     private String password;
 
     @Column(name = "estado", nullable = false)
