@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -33,11 +34,13 @@ public class Horario {
 
     @Column(name = "horaInicio", nullable = false)
     @JsonFormat(pattern = "HH:mm:ss")
+    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$", message = "Ingrese una hora válida en formato de 24 horas")
     private LocalTime horaInicio;
 
 
     @Column(name = "horaFin", nullable = false)
     @JsonFormat(pattern = "HH:mm:ss")
+    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$", message = "Ingrese una hora válida en formato de 24 horas")
     private LocalTime horaFin;
 
     @Column(name = "estado")

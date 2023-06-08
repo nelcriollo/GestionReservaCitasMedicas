@@ -9,6 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,15 +31,23 @@ public class Medico {
     private String codigoCpi;
 
     @Column(name = "nombre", length = 40, nullable = false)
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "Ingrese un solo letras")
+    @NotBlank
     private String nombre;
 
     @Column(name = "apellidos", length = 70, nullable = false)
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "Ingrese un solo letras")
+    @NotBlank
     private String apellidos;
 
     @Column(name = "email", length = 250, nullable = false)
+    @Email
+    @NotBlank
     private String email;
 
     @Column(name = "telefono", length = 15, nullable = false)
+    @Digits(integer = 9, fraction = 0, message = "Ingrese solo números")
+    @NotBlank
     private String telefono;
 
     @ManyToOne

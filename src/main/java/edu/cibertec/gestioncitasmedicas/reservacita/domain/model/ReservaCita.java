@@ -7,8 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -26,12 +29,14 @@ public class ReservaCita {
     @Column(name = "Fecha_Registro", nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future(message = "Ingrese una fecha válida en el futuro")
     private Date fechaRegistro;
 
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 
     @Column(name = "Precio", scale = 2, nullable = false)
+    @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "¤#,##0.00")
     private BigDecimal Precio;
 
     @Column(name = "estado", nullable = false)
