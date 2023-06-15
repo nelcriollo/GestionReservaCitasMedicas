@@ -26,10 +26,10 @@ public class Usuario{
     @Column(name = "apellidos", length = 70, nullable = false)
     private String apellidos;
 
-    @Column(name = "email", length = 150, nullable = false)
+    @Column(name = "email", length = 150,unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", length = 256, nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "estado", nullable = false)
