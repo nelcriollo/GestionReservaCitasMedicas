@@ -1,6 +1,5 @@
 package edu.cibertec.gestioncitasmedicas.springsecurity.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
