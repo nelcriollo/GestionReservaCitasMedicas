@@ -33,6 +33,30 @@ public class CorsConfig implements WebMvcConfigurer {
             .allowedHeaders("*")
             .allowCredentials(true)
             .maxAge(3600);
+    registry.addMapping("/api/especialidad/**")
+            .allowedOrigins("http://localhost:3000") // Reemplaza con la URL de tu aplicación de Next.js
+            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+    registry.addMapping("/api/horario/**")
+            .allowedOrigins("http://localhost:3000") // Reemplaza con la URL de tu aplicación de Next.js
+            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+    registry.addMapping("/api/paciente/**")
+            .allowedOrigins("http://localhost:3000") // Reemplaza con la URL de tu aplicación de Next.js
+            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+    registry.addMapping("/api/reservaCitas/**")
+            .allowedOrigins("http://localhost:3000") // Reemplaza con la URL de tu aplicación de Next.js
+            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
 
 }
 

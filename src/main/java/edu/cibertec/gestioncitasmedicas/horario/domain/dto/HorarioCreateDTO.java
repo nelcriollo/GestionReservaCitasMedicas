@@ -9,15 +9,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @Setter
 public class HorarioCreateDTO {
 
-    @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaRegistro;
+    private LocalDate fechaRegistro;
 
     @JsonFormat(pattern = "HH:mm:ss")
     private String horaInicio;

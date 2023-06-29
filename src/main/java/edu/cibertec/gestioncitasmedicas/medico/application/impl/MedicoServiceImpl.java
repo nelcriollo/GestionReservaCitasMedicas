@@ -38,9 +38,9 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public MedicoCreateDTO save(MedicoCreateDTO medicoCreateDTO) {
+    public MedicoDTO save(MedicoCreateDTO medicoCreateDTO) {
         Medico medico = MedicoMapper.instancia.medicoCreateDTOAMedico(medicoCreateDTO);
-        return MedicoMapper.instancia.medicoAMedicoRegistradoDTO(medicoRepository.save(medico));
+        return MedicoMapper.instancia.medicoAMedicoDTO(medicoRepository.save(medico));
     }
 
     @Override

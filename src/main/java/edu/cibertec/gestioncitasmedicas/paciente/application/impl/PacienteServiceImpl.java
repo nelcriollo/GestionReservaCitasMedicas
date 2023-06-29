@@ -38,9 +38,19 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO) {
+    public PacienteDTO findByDni(String dni) {
+        Optional<Paciente> pacienteOptional = pacienteRepository.findByNroDocumento(dni);
+
+        if (!pacienteOptional.isPresent()) {
+            throw new NoResultException("No se encontró paciente con dni" + dni);
+        }
+        return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteOptional.get());
+    }
+
+    @Override
+    public PacienteDTO save(PacienteCreateDTO pacienteCreateDTO) {
         Paciente paciente = PacienteMapper.INSTANCE.pacienteCreateDTOAPaciente(pacienteCreateDTO);
-        return PacienteMapper.INSTANCE.pacienteAPacienteRegistradoDTO(pacienteRepository.save(paciente));
+        return PacienteMapper.INSTANCE.pacienteAPacienteDTO(pacienteRepository.save(paciente));
     }
 
     @Override

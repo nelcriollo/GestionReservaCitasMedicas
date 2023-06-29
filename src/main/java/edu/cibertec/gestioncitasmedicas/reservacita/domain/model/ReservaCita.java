@@ -10,7 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Data
 @AllArgsConstructor
@@ -24,12 +25,8 @@ public class ReservaCita {
     private long idReserva;
 
     @Column(name = "Fecha_Registro", nullable = false)
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaRegistro;
-
-    @Column(name = "cantidad", nullable = false)
-    private int cantidad;
+    private LocalDate fechaRegistro;
 
     @Column(name = "Precio", scale = 2, nullable = false)
     private BigDecimal Precio;

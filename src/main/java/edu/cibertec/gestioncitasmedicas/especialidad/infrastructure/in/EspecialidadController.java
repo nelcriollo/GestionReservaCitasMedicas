@@ -44,13 +44,13 @@ public class EspecialidadController {
         return new ResponseEntity<>(especialidadService.update(especialidadUpdateDTO), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/{id_especialidad}")
-    public ResponseEntity<?> eliminar(@PathVariable(value = "id_especialidad") long id_especialidad) {
+    @DeleteMapping(value = "/{idEspecialidad}")
+    public ResponseEntity<?> eliminar(@PathVariable(value = "idEspecialidad") long idEspecialidad) {
 
 
         try {
-            especialidadService.delete(id_especialidad);
-            return new ResponseEntity<>("Se elimino la especialidad con id : " + id_especialidad, HttpStatus.OK);
+            especialidadService.delete(idEspecialidad);
+            return new ResponseEntity<>("Se elimino la especialidad con id : " + idEspecialidad, HttpStatus.OK);
 
         } catch (NoResultException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

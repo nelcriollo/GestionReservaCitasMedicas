@@ -30,7 +30,7 @@ public class MedicoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<MedicoCreateDTO> registrarMedico(@RequestBody MedicoCreateDTO medicoCreateDTO) {
+    public ResponseEntity<MedicoDTO> registrarMedico(@RequestBody MedicoCreateDTO medicoCreateDTO) {
         return new ResponseEntity<>(medicoService.save(medicoCreateDTO), HttpStatus.CREATED);
     }
 

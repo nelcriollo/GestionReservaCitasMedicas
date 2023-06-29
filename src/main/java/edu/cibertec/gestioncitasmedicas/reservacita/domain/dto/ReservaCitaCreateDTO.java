@@ -11,17 +11,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @Setter
 public class ReservaCitaCreateDTO {
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaRegistro;
 
-    private int cantidad;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaRegistro;
 
     private BigDecimal precio;
 
