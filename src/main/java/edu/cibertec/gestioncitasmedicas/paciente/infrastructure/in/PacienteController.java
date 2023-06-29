@@ -29,13 +29,23 @@ public class PacienteController {
 
     }
 
+    @RequestMapping(value = "/buscarDni/{dni}", method = RequestMethod.GET)
+    public ResponseEntity<?> findPacienteByDni(@PathVariable(name = "dni") String dni) {
+        try {
+            return new ResponseEntity<>(pacienteService.findByDni(dni), HttpStatus.OK);
+        } catch (NoResultException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<PacienteDTO>> lista() {
         return new ResponseEntity<>(pacienteService.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<PacienteCreateDTO> guardar(@RequestBody PacienteCreateDTO pacienteCreateDTO) {
+    public ResponseEntity<PacienteDTO> guardar(@RequestBody PacienteCreateDTO pacienteCreateDTO) {
         return new ResponseEntity<>(pacienteService.save(pacienteCreateDTO), HttpStatus.CREATED);
     }
 

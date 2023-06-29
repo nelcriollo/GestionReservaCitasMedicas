@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -27,9 +28,8 @@ public class Horario {
     private long idHorario;
 
     @Column(name = "fecha", nullable = false)
-    @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaRegistro;
+    private LocalDate fechaRegistro;
 
     @Column(name = "horaInicio", nullable = false)
     @JsonFormat(pattern = "HH:mm:ss")

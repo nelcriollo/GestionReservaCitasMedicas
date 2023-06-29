@@ -2,6 +2,7 @@ package edu.cibertec.gestioncitasmedicas.springsecurity.configsecurity;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.cibertec.gestioncitasmedicas.springsecurity.application.CustomUser;
 import edu.cibertec.gestioncitasmedicas.springsecurity.model.AuthenCredentials;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -62,7 +63,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
         System.out.println("soy el metodo susscess: ");
 
-        User user = (User)  authResult.getPrincipal(); //User es de spring security
+        CustomUser user = (CustomUser)  authResult.getPrincipal(); //User es de spring security
 
         String token = tokenUtil.generateToken(user.getUsername());
 
@@ -76,6 +77,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
          httpResponse.put("token", token);
          httpResponse.put("Message", "Autenticacion Correcta");
          httpResponse.put("username", user.getUsername());
+        httpResponse.put("idUsuario", user.getId());
 
          response.getWriter().write(new ObjectMapper().writeValueAsString(httpResponse));
          response.setStatus(HttpStatus.OK.value());

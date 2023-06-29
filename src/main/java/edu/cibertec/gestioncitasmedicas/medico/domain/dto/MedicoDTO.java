@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MedicoDTO {
+
     private long idMedico;
 
     private String codigoCpi;

@@ -12,7 +12,9 @@ public interface PacienteService {
 
     PacienteDTO findByID(long id_paciente);
 
-    PacienteCreateDTO save(PacienteCreateDTO pacienteCreateDTO);
+    PacienteDTO findByDni(String dni);
+
+    PacienteDTO save(PacienteCreateDTO pacienteCreateDTO);
 
     PacienteDTO update(PacienteUpdateDTO pacienteUpdateDTO);
 

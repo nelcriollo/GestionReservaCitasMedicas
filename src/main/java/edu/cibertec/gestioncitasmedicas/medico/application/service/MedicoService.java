@@ -12,7 +12,7 @@ public interface MedicoService {
 
     MedicoDTO findByID(long id);
 
-    MedicoCreateDTO save(MedicoCreateDTO medicoCreateDTO);
+    MedicoDTO save(MedicoCreateDTO medicoCreateDTO);
 
     MedicoDTO update(MedicoUpdateDTO medicoUpdateDTO);
 
