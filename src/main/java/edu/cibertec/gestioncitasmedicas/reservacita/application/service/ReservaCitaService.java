@@ -12,7 +12,7 @@ public interface ReservaCitaService {
 
     ReservaCitaDTO findByID(long id);
 
-    ReservaCitaCreateDTO save(ReservaCitaCreateDTO reservaCitaCreateDTO);
+    ReservaCitaDTO save(ReservaCitaCreateDTO reservaCitaCreateDTO);
 
     ReservaCitaDTO update(ReservaCitaUpdateDTO reservaUpdateDTO);
 

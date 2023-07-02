@@ -45,12 +45,10 @@ public class Horario {
 
     @ManyToOne
     @JoinColumn(name = "id_medico", nullable = false)
-    @JsonIgnore
     private Medico medico;
 
     @ManyToOne
     @JoinColumn(name = "id_especialidad", nullable = false)
-    @JsonIgnore
     private Especialidad especialidad;
 
 
