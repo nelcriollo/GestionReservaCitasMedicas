@@ -57,6 +57,7 @@ public class DataLoader implements CommandLineRunner {
     private void cargarDatosUsuarios() {
         Faker faker = new Faker();
         int cantidadRegistros = faker.number().numberBetween(1, 6);
+
         for (int i = 0; i < cantidadRegistros; i++) {
             Usuario usuario = new Usuario();
             usuario.setNombre(DataGenerator.generarNombre());

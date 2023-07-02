@@ -6,6 +6,7 @@ import edu.cibertec.gestioncitasmedicas.medico.domain.model.Medico;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,6 +24,7 @@ public class Especialidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_especialidad")
     private Long idEspecialidad;
+
 
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;

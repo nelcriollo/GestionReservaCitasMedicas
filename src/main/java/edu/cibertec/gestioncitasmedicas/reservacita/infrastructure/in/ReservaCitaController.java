@@ -34,7 +34,7 @@ public class ReservaCitaController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ReservaCitaCreateDTO> registrarReservaCita(@RequestBody ReservaCitaCreateDTO reservaCreateDTO) {
+    public ResponseEntity<ReservaCitaDTO> registrarReservaCita(@RequestBody ReservaCitaCreateDTO reservaCreateDTO) {
         return new ResponseEntity<>(reservaCitaService.save(reservaCreateDTO), HttpStatus.CREATED);
     }
 

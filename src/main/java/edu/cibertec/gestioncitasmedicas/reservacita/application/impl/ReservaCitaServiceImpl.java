@@ -1,12 +1,7 @@
 package edu.cibertec.gestioncitasmedicas.reservacita.application.impl;
 
-import edu.cibertec.gestioncitasmedicas.especialidad.domain.model.Especialidad;
-import edu.cibertec.gestioncitasmedicas.especialidad.infrastructure.out.EspecialidadRepository;
 import edu.cibertec.gestioncitasmedicas.horario.domain.model.Horario;
 import edu.cibertec.gestioncitasmedicas.horario.infrastructure.out.HorarioRepository;
-import edu.cibertec.gestioncitasmedicas.medico.infrastructure.out.MedicoRepository;
-import edu.cibertec.gestioncitasmedicas.paciente.domain.model.Paciente;
-import edu.cibertec.gestioncitasmedicas.paciente.infrastructure.out.PacienteRepository;
 import edu.cibertec.gestioncitasmedicas.reservacita.application.service.ReservaCitaService;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.dto.ReservaCitaCreateDTO;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.dto.ReservaCitaDTO;
@@ -14,8 +9,6 @@ import edu.cibertec.gestioncitasmedicas.reservacita.domain.dto.ReservaCitaUpdate
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.mapper.ReservaCitaMapper;
 import edu.cibertec.gestioncitasmedicas.reservacita.domain.model.ReservaCita;
 import edu.cibertec.gestioncitasmedicas.reservacita.infrastructure.out.ReservaCitaRepository;
-import edu.cibertec.gestioncitasmedicas.usuario.domain.model.Usuario;
-import edu.cibertec.gestioncitasmedicas.usuario.infrastructure.out.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class ReservaCitaServiceImpl implements ReservaCitaService {
 
     @Autowired
     private ReservaCitaRepository reservaCitaRepository;
-    @Autowired
-    private EspecialidadRepository especialidadRepository;
-    @Autowired
-    private PacienteRepository pacienteRepository;
+
     @Autowired
     private HorarioRepository horarioRepository;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
 
     @Override
     public List<ReservaCitaDTO> findAll() {
@@ -57,51 +45,39 @@ public class ReservaCitaServiceImpl implements ReservaCitaService {
 
     @Override
     @Transactional
-    public ReservaCitaCreateDTO save(ReservaCitaCreateDTO reservaCitaCreateDTO) {
+    public ReservaCitaDTO save(ReservaCitaCreateDTO reservaCitaCreateDTO) {
 
-        List<Horario> horarios = horarioRepository.findAll();
-        List<Usuario> usuarios = usuarioRepository.findAll();
+// Verificar si ya existe una reserva con la misma fecha, especialidad y paciente
+        boolean reservaExistente = reservaCitaRepository.existsReservasCitaByFechaAndEspecialidadAndPaciente(
+                reservaCitaCreateDTO.getHorario().getFechaRegistro(),
+                reservaCitaCreateDTO.getHorario().getEspecialidad().getIdEspecialidad(),
+                reservaCitaCreateDTO.getPaciente().getIdPaciente()
+        );
 
-        int maxIntentos = 10;
-        int intentos = 0;
-        Horario horario = null;
+        // Obtener el horario correspondiente
+        Optional<Horario> horario = horarioRepository.findById(reservaCitaCreateDTO.getHorario().getIdHorario());
 
-        while (intentos < maxIntentos && horario == null) {
-            int indiceHorario = ThreadLocalRandom.current().nextInt(0, horarios.size());
-            Horario horarioActual = horarios.get(indiceHorario);
+        // Verificar si el horario está disponible (estado = 0)
+        boolean horarioDisponible = horario.isPresent() && horario.get().getEstado() == 0;
 
-            boolean horarioAsignado = horarioActual.getEstado() != 0;
-            boolean reservaExistente = reservaCitaRepository.existsReservasCitaByFechaAndEspecialidadAndPaciente(
-                    horarioActual.getFechaRegistro(),
-                    horarioActual.getEspecialidad().getIdEspecialidad(),
-                    reservaCitaCreateDTO.getPaciente().getIdPaciente()
-            );
+        // Realizar las validaciones
+        if (reservaExistente) {
+            throw new RuntimeException("Ya existe una reserva con la misma fecha, especialidad y paciente.");
+        } else if (!horarioDisponible) {
+            throw new RuntimeException("El horario está ocupado. No se puede registrar la reserva.");
+        }else{
 
-            if (!horarioAsignado && !reservaExistente) {
-                horario = horarioActual;
+            ReservaCita reservaCita = ReservaCitaMapper.instancia.reservaCitaCreateDTOAReservaCita(reservaCitaCreateDTO);
+            ReservaCitaDTO reservaCitaRegistradaDTO = ReservaCitaMapper.instancia.reservaCitaAReservaCitaDTO(reservaCitaRepository.save(reservaCita));
+
+            // Actualizar el estado del horario a 1
+            if (horario.isPresent()) {
+                Horario horarioActualizado = horario.get();
+                horarioActualizado.setEstado(1);
+                horarioRepository.save(horarioActualizado);
             }
 
-            intentos++;
-        }
-
-        if (horario != null) {
-            // Asigna el horario a la reservaCita
-            ReservaCita reservaCita = ReservaCitaMapper.instancia.reservaCitaCreateDTOAReservaCita(reservaCitaCreateDTO);
-            reservaCita.setHorario(horario);
-
-            // Obtén un usuario aleatorio
-            int indiceUsuario = ThreadLocalRandom.current().nextInt(0, usuarios.size());
-            Usuario usuario = usuarios.get(indiceUsuario);
-            reservaCita.setUsuario(usuario);
-
-            // Actualiza el estado del horario a "1"
-            horario.setEstado(1);
-            horarioRepository.save(horario);
-
-            // Guarda la reservaCita en la base de datos
-            return ReservaCitaMapper.instancia.reservaCitaAReservaCitaRegistradaDTO(reservaCitaRepository.save(reservaCita));
-        } else {
-            throw new RuntimeException("No hay horarios disponibles");
+            return reservaCitaRegistradaDTO;
         }
     }
 
